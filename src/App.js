@@ -8,19 +8,23 @@ import Register from "./components/pages/Auth/Register"
 import Home from "./components/pages/Home";
 import Container from "./components/layouts/Container"
 
+import {UserProvider} from "./context/UserContext"
+
 
 function App() {
   return (
     <Router>
-      <Navbar />
-      <Container>
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/" element={<Home />}/>
-          <Route path="/register" element={<Register />}/>
-        </Routes>
-      </Container>
-      <Footer />
+      <UserProvider>
+        <Navbar />
+        <Container>
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/" element={<Home />}/>
+            <Route path="/register" element={<Register />}/>
+          </Routes>
+        </Container>
+        <Footer />
+      </UserProvider>
     </Router>
   );
 }
