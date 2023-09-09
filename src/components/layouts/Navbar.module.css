@@ -35,7 +35,8 @@
 
 .navbar li:hover {
     padding: 0.6em 0.9em;
-    background-color: #16479d   ;
+    background-color: #16479d ;
+    color: white;
 }
 
 .navbar li:hover > a {
