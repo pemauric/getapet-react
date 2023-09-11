@@ -6,11 +6,19 @@ import styles from './Profile.module.css'
 import formStyles from '../../form/Form.module.css'
 import Input from '../../form/Input'
 import InputSubmit from '../../form/InputSubmit'
+import useFlashMessage from '../../../hooks/useFlashMessage'
+import RoundedImage from '../../layouts/RoundedImage'
+
+//import dotenv from 'dotenv';
+//dotenv.config();
+
 
 function Profile () {
 
     const [user, setUser] = useState({})
+    const [preview, setPreview] = useState("")
     const [token] = useState(localStorage.getItem('token') || "")
+    const {setFlashMessage} = useFlashMessage()
     const parseToken = JSON.parse(token)
     
 
@@ -29,24 +37,55 @@ function Profile () {
     
 
     function handleChange(e) {  
-        //setUser({...user, [e.target.name]: e.target.value})
+        setUser({...user, [e.target.name]: e.target.value})
     }
 
     function onFileChange(e) {  
+        setPreview(e.target.files[0])
+        setUser({...user, [e.target.name]: e.target.files[0]})
+    }
+
+    async function handleSubmit(e) {
+        e.preventDefault()
+
+        let msgType = 'success'
+
+        let msgText = 'Dados alterado com sucesso'
+
+        const formData = new FormData()
+
+        await Object.keys(user).forEach((key) => {
+            formData.append(key, user[key])
+        })
+
+        const data = await api.patch(`/users/edit/${user._id}`, formData, {
+            headers: {
+                Authorization: `Bearer ${parseToken}`,
+                'Content-Type': 'multipart/form-data',
+            },
+        }).then((response) => {
+            return response.data
+        }).catch((error) => {
+            console.log(error)
+            msgText = error.response.data.message
+            msgType = 'error'
+        });
+
+        setFlashMessage(msgText, msgType)
     }
 
     return (
         <section className={styles.profile_container} >
             <div className={styles.profile_header}>
-                <h1>Profile</h1>
-                <p>Preview de Imagem</p>
+                {(user.image || preview ) && (
+                    <RoundedImage src={preview ? URL.createObjectURL(preview)  : `http://localhost:4000/images/users/${user.image}`} alt={user.name} />
+                )}
             </div>
-            <form className={formStyles.form_container}>
+            <form onSubmit={handleSubmit} className={formStyles.form_container}>
                 <Input 
                     type="file"
                     text="Imagem"
                     name="image"
-                    placeholder="Insira a imagem"
                     id="image"
                     handleOneChange={onFileChange}
                 />

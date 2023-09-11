@@ -9,10 +9,9 @@ import Home from "./components/pages/Home";
 import Profile from "./components/pages/User/Profile";
 import Container from "./components/layouts/Container"
 import Message from "./components/layouts/Message";
+import MyPets from "./components/pages/Pets/MyPets";
 
 import {UserProvider} from "./context/UserContext"
-
-
 
 function App() {
   return (
@@ -26,6 +25,7 @@ function App() {
             <Route path="/" element={<Home />}/>
             <Route path="/register" element={<Register />}/>
             <Route path="/user/profile" element={<Profile />}/>
+            <Route path="/pet/mypets" element={<MyPets />}/>
           </Routes>
         </Container>
         <Footer />
