@@ -34,7 +34,7 @@ function Register() {
                     name="name"
                     placeholder="Insira seu nome"
                     id="name"
-                    handleOneChange={handleChange}
+                    handleOnChange={handleChange}
                 />
                 <Input 
                     type="text"
@@ -42,7 +42,7 @@ function Register() {
                     name="phone"
                     placeholder="Insira seu numero"
                     id="phone"
-                    handleOneChange={handleChange}
+                    handleOnChange={handleChange}
                 />
                 <Input 
                     type="email"
@@ -50,7 +50,7 @@ function Register() {
                     name="email"
                     placeholder="Insira seu e-mail"
                     id="email"
-                    handleOneChange={handleChange}
+                    handleOnChange={handleChange}
                 />
                 <Input 
                     type="password"
@@ -58,7 +58,7 @@ function Register() {
                     name="password"
                     placeholder="Insira sua senha"
                     id="password"
-                    handleOneChange={handleChange}
+                    handleOnChange={handleChange}
                 />
                 <Input 
                     type="password"
@@ -66,7 +66,7 @@ function Register() {
                     name="confirmpassword"
                     placeholder="Insira sua senha"
                     id="confirmpassword"
-                    handleOneChange={handleChange}
+                    handleOnChange={handleChange}
                 />
                 <InputSubmit
                     type="submit"

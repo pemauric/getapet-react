@@ -33,7 +33,7 @@ function Login() {
                     name="email"
                     placeholder="Insira seu e-mail"
                     id="email"
-                    handleOneChange={handleChange}
+                    handleOnChange={handleChange}
                 />
                 <Input 
                     type="password"
@@ -41,7 +41,7 @@ function Login() {
                     name="password"
                     placeholder="Insira sua senha"
                     id="password"
-                    handleOneChange={handleChange}
+                    handleOnChange={handleChange}
                 />
                 <InputSubmit
                     type="submit"

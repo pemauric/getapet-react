@@ -87,7 +87,7 @@ function Profile () {
                     text="Imagem"
                     name="image"
                     id="image"
-                    handleOneChange={onFileChange}
+                    handleOnChange={onFileChange}
                 />
                 <Input 
                     type="email"
@@ -95,7 +95,7 @@ function Profile () {
                     name="email"
                     placeholder="Insira seu e-mail"
                     id="email"
-                    handleOneChange={handleChange}
+                    handleOnChange={handleChange}
                     value={user.email || ''}
                 />
                 <Input 
@@ -104,7 +104,7 @@ function Profile () {
                     name="name"
                     placeholder="Insira seu nome"
                     id="name"
-                    handleOneChange={handleChange}
+                    handleOnChange={handleChange}
                     value={user.name || ''}
                 />
                 <Input 
@@ -113,7 +113,7 @@ function Profile () {
                     name="phone"
                     placeholder="Insira seu telefone"
                     id="phone"
-                    handleOneChange={handleChange}
+                    handleOnChange={handleChange}
                     value={user.phone || ''}
                 />
                 <Input 
@@ -122,7 +122,7 @@ function Profile () {
                     name="password"
                     placeholder="Insira sua senha"
                     id="password"
-                    handleOneChange={handleChange}
+                    handleOnChange={handleChange}
                 />
                 <Input 
                     type="password"
@@ -130,7 +130,7 @@ function Profile () {
                     name="confirmpassword"
                     placeholder="Insira sua senha"
                     id="confirmpassword"
-                    handleOneChange={handleChange}
+                    handleOnChange={handleChange}
                 />
                 <InputSubmit
                     type="submit"
