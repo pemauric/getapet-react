@@ -13,7 +13,7 @@ function PetForm({handleSubmit, petData, btnText}) {
 
     function onFileChange(e) {
         setPreview(Array.from(e.target.files))
-        setPet({ ...pet, images: [...e.target.files] })
+        setPet({ ...pet, image: [...e.target.files] })
     }
 
     function handleChange(e) {
@@ -29,80 +29,76 @@ function PetForm({handleSubmit, petData, btnText}) {
     
     const submit = (e) => {
         e.preventDefault()
-        console.log(pet)
-        //handleSubmit(pet)
+        
+        handleSubmit(pet)
     }
     
     
     return (
-        <div className={formStyles.form_container}>
-            <div className={formStyles.preview_pet_images}>
-                {preview.length > 0
-                ? preview.map((image, index) => (
-                <img
-                    src={URL.createObjectURL(image)}
-                    alt={pet.name}
-                    key={`${pet.name}+${index}`}
-                    />
-                    ))
-                : pet.images &&
-                pet.images.map((image, index) => (
+        <form onSubmit={submit}>
+            <div className={formStyles.form_container}>
+                <div className={formStyles.preview_pet_images}>
+                    {preview.length > 0
+                    ? preview.map((image, index) => (
                     <img
-                        src={`http://localhost:4000/images/pets/${image}`}
+                        src={URL.createObjectURL(image)}
                         alt={pet.name}
                         key={`${pet.name}+${index}`}
-                    />
-                ))}
-            </div>
-            <form  onSubmit={handleSubmit} >
+                        />
+                        ))
+                    : pet.image &&
+                    pet.image.map((image, index) => (
+                        <img
+                            src={`http://localhost:4000/images/pets/${image}`}
+                            alt={pet.name}
+                            key={`${pet.name}+${index}`}
+                        />
+                    ))}
+                </div>
                 <Input
                     text="Imagens do Pet"
                     type="file"
-                    name="images"
+                    name="image"
                     handleOnChange={onFileChange}
                     multiple={true}
                 />
                 <Input
+                    text="Nome do Pet"
                     type="text"
-                    text="Nome"
                     name="name"
-                    placeholder="Insira o nome "
-                    id="name"
+                    placeholder="Digite o nome"
                     handleOnChange={handleChange}
-                    value={pet.name || ""}
+                    //value={pet.name || ''}
                 />
                 <Input
+                    text="Idade do Pet"
                     type="number"
-                    text="Idade"
                     name="age"
-                    placeholder="Insira a idade "
-                    id="age"
+                    placeholder="Digite a idade"
                     handleOnChange={handleChange}
-                    value={pet.age || ""}
+                    //value={pet.age || ''}
                 />
                 <Input
+                    text="Peso do Pet"
                     type="number"
-                    text="Peso"
                     name="weight"
-                    placeholder="Insira o peso "
-                    id="weight"
+                    placeholder="Digite o peso aproximado"
+                    //value={pet.weight || ''}
                     handleOnChange={handleChange}
-                    value={pet.weight || ""}
                 />
                 <Select
-                    text="Selecione a cor"
                     name="color"
-                    id="color"
+                    text="Selecione a categoria"
                     options={colors}
                     handleOnChange={handleColor}
-                    value={pet.color || ""}
+                    //value={pet.color || ''}
                 />
                 <InputSubmit
-                    type="Submit"
                     value={btnText}
+                    type="submit"
                 />
-            </form>
-        </div>
+            </div>
+        </form>
     )
 }
 

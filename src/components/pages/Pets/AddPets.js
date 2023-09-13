@@ -12,30 +12,28 @@ function AddPets() {
 
     const [token] = useState(localStorage.getItem('token') || '')
     const { setFlashMessage } = useFlashMessage()
+    const parseToken = JSON.parse(token)
     const navigate = useNavigate()
     
 
     async function registerPet(pet) {
         let msgType = 'success'
     
-        const formData = new FormData()
+        const formData = new FormData
     
-        const petFormData = await Object.keys(pet).forEach((key) => {
-            if (key === 'images') {
-            for (let i = 0; i < pet[key].length; i++) {
-                formData.append(`images`, pet[key][i])
+        await Object.keys(pet).forEach((key) => {
+            if (key === 'image') {
+                for (let i = 0; i < pet[key].length; i++) {
+                    formData.append(`image`, pet[key][i])
             }
             } else {
                 formData.append(key, pet[key])
             }
         })
     
-        formData.append('pet', petFormData)
-    
-        const data = await api
-            .post(`pets/create`, formData, {
+        const data = await api.post(`/pets/create`, formData, {
                 headers: {
-                Authorization: `Bearer ${JSON.parse(token)}`,
+                Authorization: `Bearer ${parseToken}`,
                 'Content-Type': 'multipart/form-data',
             },
         })
@@ -50,7 +48,10 @@ function AddPets() {
         })
     
         setFlashMessage(data.message, msgType)
-        navigate('/pet/mypets')
+
+        if(msgType !== 'error') {
+            navigate('/pet/mypets')
+        }
     }
 
     return (
@@ -59,7 +60,7 @@ function AddPets() {
                 <h1>Cadastrar Pet</h1>
                 <p>Depois ele ficara disponivel para adocao</p>
             </div>
-                <PetForm btnText="Cadastrar pet"/>
+                <PetForm  handleSubmit={registerPet} btnText="Cadastrar pet"/>
         </section>
     )
 }
