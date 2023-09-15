@@ -12,8 +12,11 @@ import Message from "./components/layouts/Message";
 import MyPets from "./components/pages/Pets/MyPets";
 import AddPets from "./components/pages/Pets/AddPets";
 import EditPet from "./components/pages/Pets/EditPet";
+import PetDetails from "./components/pages/Pets/PetDetails";
+import MyAdoptions from "./components/pages/Pets/MyAdoptions";
 
 import {UserProvider} from "./context/UserContext"
+
 
 function App() {
   return (
@@ -30,6 +33,8 @@ function App() {
             <Route path="/pet/mypets" element={<MyPets />}/>
             <Route path="/pet/add" element={<AddPets/>}/>
             <Route path="/pet/edit/:id" element={<EditPet/>}/>
+            <Route path="/pet/:id" element={<PetDetails/>}/>
+            <Route path="/pet/myadoptions" element={<MyAdoptions/>}/>
           </Routes>
         </Container>
         <Footer />
